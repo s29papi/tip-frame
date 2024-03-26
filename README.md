@@ -1,7 +1,7 @@
 <div align="center">
   <br />
   <br />
-  <a href="https://3dns.box"><img alt="Optimism" src="https://magenta-hollow-tiglon-795.mypinata.cloud/ipfs/Qmf6HDPzGJjcWT1g8tp2gdduTHNFPUwrrvoN4St7rR8wSV" width=1000></a>
+  <a href="https://www.projectstadium.com/"><img alt="Versus" src="https://magenta-hollow-tiglon-795.mypinata.cloud/ipfs/QmRSEvtqgjt2rz4CLZgnavF7nmVxUdwX9fvm6guvyFBdGu" width=1000></a>
   <br />
   <h3><a href="https://www.projectstadium.com/">Versus</a> frame on farcaster, challenge and stake on games.</h3>
   <br />
