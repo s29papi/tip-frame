@@ -16,7 +16,7 @@
 
 
 ## What does this Frame do? 
-This Frame facilitates domain name queries across a diverse character set by interfacing with 3dns's API. Utilizing this interface, it generates an image presenting key domain information, including its tokenization availability, associated tokenization costs, and recurring renewal fees. Distinguished by its robust architecture and bolstered by 3dns, it extends its functionality by seamlessly integrating with a direct 3dns checkout process.
+This Frame facilitates challenges and staking on games.
 
 ## Getting Started
 
