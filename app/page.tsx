@@ -8,7 +8,7 @@ type Props = {
 }
  
 const REDIRECT_URL = process.env.NEXT_PUBLIC_REDIRECT_URL || "https://www.projectstadium.com/";
-const FRAMES_URL = "https://www..com/"; 
+const FRAMES_URL = "https://versus-frame.vercel.app/"; 
 
 
 export async function generateMetadata(
