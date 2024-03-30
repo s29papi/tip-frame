@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element  */
-/* eslint-disable jsx-ally/alt-text */
+
 // @ts-nocheck
 import { ImageResponse } from 'next/og'
 
