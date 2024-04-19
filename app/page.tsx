@@ -46,32 +46,32 @@ export async function generateMetadata(
   //   postUrl += '?'
   // }
 
-  // if (searchParams.state) {
-  //   if (state == State.Stake) {
-  //     let buttonLabel = "Stake"
-  //     buttons = [
-  //       {label: buttonLabel, action: 'post'}
-  //     ]
-  //   }
-
-  //   if(state == State.AcceptChallenge) {
-  //     let buttonLabel = "Accept Challenge"
-  //     buttons = [
-  //       {label: buttonLabel, action: 'post'}
-  //     ]
-  //   }
-
-  //   if (state == State.StartMatch) {
-  //     let buttonLabel = "Start Match"
-  //     buttons = [
-  //       {label: buttonLabel, action: 'post'}
-  //     ]
-  //   }
-
-  //   postUrl += "/api"
-  // }
-
   if (Object.keys(searchParams)) {
+    if (state == State.Stake) {
+      let buttonLabel = "Stake"
+      buttons = [
+        {label: buttonLabel, action: 'post'}
+      ]
+    }
+
+    if(state == State.AcceptChallenge) {
+      let buttonLabel = "Accept Challenge"
+      buttons = [
+        {label: buttonLabel, action: 'post'}
+      ]
+    }
+
+    if (state == State.StartMatch) {
+      let buttonLabel = "Start Match"
+      buttons = [
+        {label: buttonLabel, action: 'post'}
+      ]
+    }
+
+    postUrl += "/api"
+  }
+
+  if (!Object.keys(searchParams)) {
     let buttonLabel = 'Invalid Games';
     buttons = [
       {label: buttonLabel, action: 'post'}
