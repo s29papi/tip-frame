@@ -30,7 +30,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   let imgUrl = new URL("/og/landing", FRAMES_URL).href
   let postUrl = new URL("/", FRAMES_URL).href
-  let state = searchParams["state"]; 
+  let state; 
   let buttons: [FrameButtonMetadata, ...FrameButtonMetadata[]] = [{ label: "", action: 'post' },];
 
   // if (searchParams) {
@@ -46,32 +46,32 @@ export async function generateMetadata(
   //   postUrl += '?'
   // }
 
+  // if (searchParams.state) {
+  //   if (state == State.Stake) {
+  //     let buttonLabel = "Stake"
+  //     buttons = [
+  //       {label: buttonLabel, action: 'post'}
+  //     ]
+  //   }
+
+  //   if(state == State.AcceptChallenge) {
+  //     let buttonLabel = "Accept Challenge"
+  //     buttons = [
+  //       {label: buttonLabel, action: 'post'}
+  //     ]
+  //   }
+
+  //   if (state == State.StartMatch) {
+  //     let buttonLabel = "Start Match"
+  //     buttons = [
+  //       {label: buttonLabel, action: 'post'}
+  //     ]
+  //   }
+
+  //   postUrl += "/api"
+  // }
+
   if (Object.keys(searchParams)) {
-    if (state == State.Stake) {
-      let buttonLabel = "Stake"
-      buttons = [
-        {label: buttonLabel, action: 'post'}
-      ]
-    }
-
-    if(state == State.AcceptChallenge) {
-      let buttonLabel = "Accept Challenge"
-      buttons = [
-        {label: buttonLabel, action: 'post'}
-      ]
-    }
-
-    if (state == State.StartMatch) {
-      let buttonLabel = "Start Match"
-      buttons = [
-        {label: buttonLabel, action: 'post'}
-      ]
-    }
-
-    postUrl += "/api"
-  }
-
-  if (!Object.keys(searchParams)) {
     let buttonLabel = 'Invalid Games';
     buttons = [
       {label: buttonLabel, action: 'post'}
