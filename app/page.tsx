@@ -22,7 +22,7 @@ const FRAMES_URL = "https://versus-frame.vercel.app/";
 
 /**
  * Rulesets:
- * 
+ * Demo-Url: https://versus-frame.vercel.app/?state=stake&&gameId=1&&gameName=Test%20Game&&gameSetup=one%20two&&stakeAmount=100%20usdc&&creatorFid=112
  * Valid-Game-URL: ?state=${state}&&gameId=${gameId}&&gameName=${gameName}&&gameSetup=${gameSetup}&&stakeAmount=${stakeAmount}&&creatorFid=${creatorFid}
 */
 export async function generateMetadata(
@@ -34,7 +34,7 @@ export async function generateMetadata(
   let state; 
   let buttons: [FrameButtonMetadata, ...FrameButtonMetadata[]] = [{ label: "", action: 'post' },];
 
-  if (Object.keys(searchParams).length !== 0) {
+  if (Object.keys(searchParams).length != 0) {
     state = searchParams["state"];
     const gameId = searchParams["gameId"];
     const gameName = searchParams["gameName"];
@@ -47,7 +47,7 @@ export async function generateMetadata(
     postUrl += '?'
   }
 
-  if (Object.keys(searchParams).length !== 0) {
+  if (Object.keys(searchParams).length != 0) {
     if (state == State.Stake) {
       let buttonLabel = "Stake"
       buttons = [
@@ -68,7 +68,7 @@ export async function generateMetadata(
         {label: buttonLabel, action: 'post'}
       ]
     }
-    
+
     postUrl += "/api"
   }
 
