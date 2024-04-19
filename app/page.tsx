@@ -33,7 +33,7 @@ export async function generateMetadata(
   let state; 
   let buttons: [FrameButtonMetadata, ...FrameButtonMetadata[]] = [{ label: "", action: 'post' },];
 
-  if (Object.keys(searchParams).length != 0) {
+  if (searchParams) {
     state = searchParams["state"];
     const gameId = searchParams["gameId"];
     const gameName = searchParams["gameName"];
