@@ -103,5 +103,7 @@ export async function generateMetadata(
 }
 
 export default async function Page() {
-  redirect(REDIRECT_URL);
+  return (
+    <div>jdjdj</div>
+  )
 }
