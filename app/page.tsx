@@ -4,7 +4,7 @@ import type { Metadata, ResolvingMetadata } from 'next';
 
 
 type Props = {
-  params: { gameId: string }
+  params: { state: string, gameId: string }
   searchParams: { [key: string]: string | string[] | undefined }
 }
 
@@ -30,7 +30,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   let imgUrl = new URL("/og/landing", FRAMES_URL).href
   let postUrl = new URL("/", FRAMES_URL).href
-  let state = searchParams["state"]
+  let state = params.state
   let buttons: [FrameButtonMetadata, ...FrameButtonMetadata[]] = [{ label: "", action: 'post' },];
 
   // if (searchParams) {
