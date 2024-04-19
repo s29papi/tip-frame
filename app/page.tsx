@@ -28,7 +28,7 @@ export async function generateMetadata(
   { params, searchParams }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  let imgUrl = new URL("/og/landing", FRAMES_URL).href
+  
   let postUrl = new URL("/", FRAMES_URL).href
   let urlState = params.urlState
   let buttons: [FrameButtonMetadata, ...FrameButtonMetadata[]] = [{ label: "", action: 'post' },];
@@ -77,6 +77,8 @@ export async function generateMetadata(
       {label: buttonLabel, action: 'post'}
     ]
   }
+
+  let imgUrl = new URL("/og/landing", FRAMES_URL).href
 
   let frameMetadata = getFrameMetadata({
                         buttons: buttons,
