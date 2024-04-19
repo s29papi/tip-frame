@@ -41,7 +41,7 @@ export async function generateMetadata(
     const gameSetup = searchParams["gameSetup"];
     const stakeAmount = searchParams["stakeAmount"];
     const creatorFid = searchParams["creatorFid"];
-    let queryParams = `state=${state}&&gameId=${gameId}&&gameName=${gameName}&&gameSetup=${gameSetup}&&stakeAmount=${stakeAmount}&&creatorFid=${creatorFid}`
+    let queryParams = `state=${state}&gameId=${gameId}&gameName=${gameName}&gameSetup=${gameSetup}&stakeAmount=${stakeAmount}&creatorFid=${creatorFid}`
     imgUrl += '?'
     imgUrl += queryParams
     postUrl += '?'

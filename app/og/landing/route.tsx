@@ -7,7 +7,7 @@ export const runtime = 'edge';
 export async function GET(req: Request) {
     const { searchParams } = new URL(req.url);
     if (searchParams.size != 0) {
-        return await ogImgWithQueryParams()
+        return await ogImgNoQueryParams()
     }
     
    return await ogImgNoQueryParams()
