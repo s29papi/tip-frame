@@ -30,7 +30,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   let imgUrl = new URL("/og/landing", FRAMES_URL).href
   let postUrl = new URL("/", FRAMES_URL).href
-  let state = searchParams["state"];; 
+  let state = searchParams["state"]
   let buttons: [FrameButtonMetadata, ...FrameButtonMetadata[]] = [{ label: "", action: 'post' },];
 
   // if (searchParams) {
