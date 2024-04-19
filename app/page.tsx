@@ -68,7 +68,7 @@ export async function generateMetadata(
       ]
     }
 
-    postUrl += "/api" + Object.keys(searchParams)[0]
+    postUrl += "/api" + searchParams["state"]
   }
 
   if (!Object.keys(searchParams)) {
