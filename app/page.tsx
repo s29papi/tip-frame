@@ -30,10 +30,10 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   let imgUrl = new URL("/og/landing", FRAMES_URL).href
   let postUrl = new URL("/", FRAMES_URL).href
-  let state; 
+  let state = searchParams["state"]; 
   let buttons: [FrameButtonMetadata, ...FrameButtonMetadata[]] = [{ label: "", action: 'post' },];
-  state = searchParams["state"];
-  // if (Object.keys(searchParams)) {
+
+  // if (searchParams) {
   //   state = searchParams["state"];
   //   const gameId = searchParams["gameId"];
   //   const gameName = searchParams["gameName"];
@@ -41,9 +41,9 @@ export async function generateMetadata(
   //   const stakeAmount = searchParams["stakeAmount"];
   //   const creatorFid = searchParams["creatorFid"];
   //   let queryParams = `state=${state}&gameId=${gameId}&gameName=${gameName}&gameSetup=${gameSetup}&stakeAmount=${stakeAmount}&creatorFid=${creatorFid}`
-  //   // imgUrl += '?'
-  //   // imgUrl += queryParams
-  //   // postUrl += '?'
+  //   imgUrl += '?'
+  //   imgUrl += queryParams
+  //   postUrl += '?'
   // }
 
   if (Object.keys(searchParams)) {
