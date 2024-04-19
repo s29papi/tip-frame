@@ -32,8 +32,6 @@ export async function generateMetadata(
   let imgUrl = new URL("/og/landing", FRAMES_URL).href
   let postUrl = new URL("/", FRAMES_URL).href
   let state; 
-  let input: boolean = false;
-  let inputLabel: FrameInputMetadata = { text: ""};
   let buttons: [FrameButtonMetadata, ...FrameButtonMetadata[]] = [{ label: "", action: 'post' },];
 
   if (Object.keys(searchParams).length !== 0) {
@@ -47,7 +45,6 @@ export async function generateMetadata(
     imgUrl += '?'
     imgUrl += queryParams
     postUrl += '?'
-    postUrl += queryParams
   }
 
   if (Object.keys(searchParams).length !== 0) {
@@ -71,6 +68,8 @@ export async function generateMetadata(
         {label: buttonLabel, action: 'post'}
       ]
     }
+    
+    postUrl += "/api"
   }
 
   if (Object.keys(searchParams).length == 0) {
