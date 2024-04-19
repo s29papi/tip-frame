@@ -1,43 +1,78 @@
 import { redirect } from 'next/navigation'
-import { getFrameMetadata } from '@coinbase/onchainkit';
+import { FrameButtonMetadata, getFrameMetadata } from '@coinbase/onchainkit';
 import type { Metadata, ResolvingMetadata } from 'next';
+import { InvalidStorageKeySizeError } from 'viem';
+import { FrameData } from '@coinbase/onchainkit/frame';
 
 type Props = {
   params: { gameId: string }
   searchParams: { [key: string]: string | string[] | undefined }
 }
- 
+
+enum State {
+  Stake = "stake",
+  AcceptChallenge = "accept-challenge",
+  StartMatch = "start-match", 
+  CompleteMatch = "complete-match"
+}
+
+
 const REDIRECT_URL = process.env.NEXT_PUBLIC_REDIRECT_URL || "https://www.projectstadium.com/";
 const FRAMES_URL = "https://versus-frame.vercel.app/"; 
 
-
+/**
+ * Rulesets:
+ * 
+ * Valid-Game-URL: ?state=${state}&&gameId=${gameId}&&gameName=${gameName}&&gameSetup=${gameSetup}&&stakeAmount=${stakeAmount}&&creatorFid=${creatorFid}
+*/
 export async function generateMetadata(
   { params, searchParams }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  
   let imgUrl = new URL("/og/landing", FRAMES_URL).href
   let postUrl = new URL("/", FRAMES_URL).href
+  let state; 
+  let buttons: FrameButtonMetadata[] = [{ label: "", action: 'post' }];
 
   if (Object.keys(searchParams).length !== 0) {
+    state = searchParams["state"];
     const gameId = searchParams["gameId"];
-    const gameName = searchParams["gameName"]
-    const gameSetup = searchParams["gameSetup"]
-    const stakeAmount = searchParams["stakeAmount"]
-    const creatorFid = searchParams["creatorFid"]
-    let queryParams = `gameId=${gameId}&&gameName=${gameName}&&gameSetup=${gameSetup}&&stakeAmount=${stakeAmount}&&creatorFid=${creatorFid}`
+    const gameName = searchParams["gameName"];
+    const gameSetup = searchParams["gameSetup"];
+    const stakeAmount = searchParams["stakeAmount"];
+    const creatorFid = searchParams["creatorFid"];
+    let queryParams = `state=${state}&&gameId=${gameId}&&gameName=${gameName}&&gameSetup=${gameSetup}&&stakeAmount=${stakeAmount}&&creatorFid=${creatorFid}`
     imgUrl += '?'
     imgUrl += queryParams
     postUrl += '?'
     postUrl += queryParams
   }
 
-  let buttonLabel = Object.keys(searchParams).length !== 0 ? 'Accept Challenge' : 'Invalid Game';
+  if (Object.keys(searchParams).length !== 0) {
+    if (state == State.Stake) {
+      let buttonLabel = "Stake"
+      buttons = [{label: buttonLabel, action: 'post'}]
+    }
+
+    if(state == State.AcceptChallenge) {
+      let buttonLabel = "Accept Challenge"
+      buttons = [{label: buttonLabel, action: 'post'}]
+    }
+
+    if (state == State.StartMatch) {
+      let buttonLabel_1 = "Ready Up!"
+      let buttonLabel_2 = "Forfeit"
+      buttons = [{label: buttonLabel_1, action: 'post'}, {label: buttonLabel_2, action: 'post'}]
+    }
+  }
+
+  if (Object.keys(searchParams).length == 0) {
+    let buttonLabel = 'Invalid Game';
+    buttons = [{label: buttonLabel, action: 'post'}]
+  }
 
   const frameMetadata = getFrameMetadata({
-    buttons: [
-      {label: buttonLabel, action: 'post'}
-    ],
+    buttons: [...buttons],
     image: imgUrl,
     post_url: postUrl,
   })

@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element  */
-
 // @ts-nocheck
 import { ImageResponse } from 'next/og'
 
@@ -8,7 +7,7 @@ export const runtime = 'edge';
 export async function GET(req: Request) {
     const { searchParams } = new URL(req.url);
     if (searchParams.size != 0) {
-        
+        return await ogImgWithQueryParams()
     }
     
    return await ogImgNoQueryParams()
@@ -25,5 +24,9 @@ async function ogImgNoQueryParams(): ImageResponse {
             </div>
         )
     )
+}
+
+async function ogImgWithQueryParams(): ImageResponse {
+
 }
 
