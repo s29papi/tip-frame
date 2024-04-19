@@ -1,8 +1,7 @@
 import { redirect } from 'next/navigation'
 import { FrameButtonMetadata, FrameInputMetadata, getFrameMetadata } from '@coinbase/onchainkit';
 import type { Metadata, ResolvingMetadata } from 'next';
-import { InvalidStorageKeySizeError } from 'viem';
-import { FrameData } from '@coinbase/onchainkit/frame';
+
 
 type Props = {
   params: { gameId: string }
@@ -47,7 +46,7 @@ export async function generateMetadata(
     postUrl += '?'
   }
 
-  if (Object.keys(searchParams).length != 0) {
+  if (searchParams.state) {
     if (state == State.Stake) {
       let buttonLabel = "Stake"
       buttons = [
