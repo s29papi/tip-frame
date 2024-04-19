@@ -29,10 +29,12 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   let state = searchParams["state"]
-  let imgUrl = new URL("/og/landing", FRAMES_URL).href
-  let postUrl = new URL("/", FRAMES_URL).href
+  // let imgUrl = new URL("/og/landing", FRAMES_URL).href
+ 
   
   let buttons: [FrameButtonMetadata, ...FrameButtonMetadata[]] = [{ label: "", action: 'post' },];
+  let imgUrl = "https://versus-frame.vercel.app/og/landing"
+  let postUrl = new URL("/", FRAMES_URL).href
 
   // if (searchParams) {
   //   state = searchParams["state"];
