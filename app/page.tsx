@@ -41,9 +41,9 @@ export async function generateMetadata(
     const stakeAmount = searchParams["stakeAmount"];
     const creatorFid = searchParams["creatorFid"];
     let queryParams = `state=${state}&gameId=${gameId}&gameName=${gameName}&gameSetup=${gameSetup}&stakeAmount=${stakeAmount}&creatorFid=${creatorFid}`
-    imgUrl += '?'
-    imgUrl += queryParams
-    postUrl += '?'
+    // imgUrl += '?'
+    // imgUrl += queryParams
+    // postUrl += '?'
   }
 
   if (Object.keys(searchParams)) {
