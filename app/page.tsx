@@ -71,12 +71,12 @@ export async function generateMetadata(
   //   postUrl += "/api"
   // }
 
-  // if (!searchParams) {
+  if (!searchParams) {
     let buttonLabel = 'Invalid Games';
     buttons = [
       {label: buttonLabel, action: 'post'}
     ]
-  // }
+  }
 
   let frameMetadata = getFrameMetadata({
                         buttons: buttons,
