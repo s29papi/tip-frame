@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation'
-import { FrameButtonMetadata, getFrameMetadata } from '@coinbase/onchainkit';
+import { FrameButtonMetadata, FrameInputMetadata, getFrameMetadata } from '@coinbase/onchainkit';
 import type { Metadata, ResolvingMetadata } from 'next';
 import { InvalidStorageKeySizeError } from 'viem';
 import { FrameData } from '@coinbase/onchainkit/frame';
@@ -32,7 +32,9 @@ export async function generateMetadata(
   let imgUrl = new URL("/og/landing", FRAMES_URL).href
   let postUrl = new URL("/", FRAMES_URL).href
   let state; 
-  let buttons: FrameButtonMetadata[] = [{ label: "", action: 'post' }];
+  let input: boolean = false;
+  let inputLabel: FrameInputMetadata = { text: ""};
+  let buttons: [FrameButtonMetadata, ...FrameButtonMetadata[]] = [{ label: "", action: 'post' },];
 
   if (Object.keys(searchParams).length !== 0) {
     state = searchParams["state"];
@@ -51,31 +53,39 @@ export async function generateMetadata(
   if (Object.keys(searchParams).length !== 0) {
     if (state == State.Stake) {
       let buttonLabel = "Stake"
-      buttons = [{label: buttonLabel, action: 'post'}]
+      buttons = [
+        {label: buttonLabel, action: 'post'}
+      ]
     }
 
     if(state == State.AcceptChallenge) {
       let buttonLabel = "Accept Challenge"
-      buttons = [{label: buttonLabel, action: 'post'}]
+      buttons = [
+        {label: buttonLabel, action: 'post'}
+      ]
     }
 
     if (state == State.StartMatch) {
-      let buttonLabel_1 = "Ready Up!"
-      let buttonLabel_2 = "Forfeit"
-      buttons = [{label: buttonLabel_1, action: 'post'}, {label: buttonLabel_2, action: 'post'}]
+      let buttonLabel = "Start Match"
+      buttons = [
+        {label: buttonLabel, action: 'post'}
+      ]
     }
   }
 
   if (Object.keys(searchParams).length == 0) {
     let buttonLabel = 'Invalid Game';
-    buttons = [{label: buttonLabel, action: 'post'}]
+    buttons = [
+      {label: buttonLabel, action: 'post'}
+    ]
   }
 
-  const frameMetadata = getFrameMetadata({
-    buttons: [...buttons],
-    image: imgUrl,
-    post_url: postUrl,
-  })
+  let frameMetadata = getFrameMetadata({
+                        buttons: buttons,
+                        image: imgUrl,
+                        post_url: postUrl,
+                      });
+
 
   return {
     title: 'Versus By Stadium',
