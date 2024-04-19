@@ -73,7 +73,7 @@ export async function generateMetadata(
   }
 
   if (Object.keys(searchParams).length == 0) {
-    let buttonLabel = 'Invalid Game';
+    let buttonLabel = 'Invalid Games';
     buttons = [
       {label: buttonLabel, action: 'post'}
     ]
