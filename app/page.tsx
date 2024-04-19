@@ -28,9 +28,10 @@ export async function generateMetadata(
   { params, searchParams }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  
+  let state = searchParams["state"]
+  let imgUrl = new URL("/og/landing", FRAMES_URL).href
   let postUrl = new URL("/", FRAMES_URL).href
-  let urlState = params.urlState
+  
   let buttons: [FrameButtonMetadata, ...FrameButtonMetadata[]] = [{ label: "", action: 'post' },];
 
   // if (searchParams) {
@@ -47,28 +48,28 @@ export async function generateMetadata(
   // }
 
   if (Object.keys(searchParams)) {
-    if (urlState == State.Stake) {
+    if (state == State.Stake) {
       let buttonLabel = "Stake"
       buttons = [
         {label: buttonLabel, action: 'post'}
       ]
     }
 
-    if(urlState == State.AcceptChallenge) {
+    if(state == State.AcceptChallenge) {
       let buttonLabel = "Accept Challenge"
       buttons = [
         {label: buttonLabel, action: 'post'}
       ]
     }
 
-    if (urlState == State.StartMatch) {
+    if (state == State.StartMatch) {
       let buttonLabel = "Start Match"
       buttons = [
         {label: buttonLabel, action: 'post'}
       ]
     }
 
-    postUrl += "/api" + searchParams["urlState"]
+    postUrl += "/api" + state
   }
 
   if (!Object.keys(searchParams)) {
@@ -77,8 +78,6 @@ export async function generateMetadata(
       {label: buttonLabel, action: 'post'}
     ]
   }
-
-  let imgUrl = new URL("/og/landing", FRAMES_URL).href
 
   let frameMetadata = getFrameMetadata({
                         buttons: buttons,
