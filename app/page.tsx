@@ -33,50 +33,50 @@ export async function generateMetadata(
   let state; 
   let buttons: [FrameButtonMetadata, ...FrameButtonMetadata[]] = [{ label: "", action: 'post' },];
 
-  if (searchParams) {
-    state = searchParams["state"];
-    const gameId = searchParams["gameId"];
-    const gameName = searchParams["gameName"];
-    const gameSetup = searchParams["gameSetup"];
-    const stakeAmount = searchParams["stakeAmount"];
-    const creatorFid = searchParams["creatorFid"];
-    let queryParams = `state=${state}&gameId=${gameId}&gameName=${gameName}&gameSetup=${gameSetup}&stakeAmount=${stakeAmount}&creatorFid=${creatorFid}`
-    imgUrl += '?'
-    imgUrl += queryParams
-    postUrl += '?'
-  }
+  // if (searchParams) {
+  //   state = searchParams["state"];
+  //   const gameId = searchParams["gameId"];
+  //   const gameName = searchParams["gameName"];
+  //   const gameSetup = searchParams["gameSetup"];
+  //   const stakeAmount = searchParams["stakeAmount"];
+  //   const creatorFid = searchParams["creatorFid"];
+  //   let queryParams = `state=${state}&gameId=${gameId}&gameName=${gameName}&gameSetup=${gameSetup}&stakeAmount=${stakeAmount}&creatorFid=${creatorFid}`
+  //   imgUrl += '?'
+  //   imgUrl += queryParams
+  //   postUrl += '?'
+  // }
 
-  if (searchParams.state) {
-    if (state == State.Stake) {
-      let buttonLabel = "Stake"
-      buttons = [
-        {label: buttonLabel, action: 'post'}
-      ]
-    }
+  // if (searchParams.state) {
+  //   if (state == State.Stake) {
+  //     let buttonLabel = "Stake"
+  //     buttons = [
+  //       {label: buttonLabel, action: 'post'}
+  //     ]
+  //   }
 
-    if(state == State.AcceptChallenge) {
-      let buttonLabel = "Accept Challenge"
-      buttons = [
-        {label: buttonLabel, action: 'post'}
-      ]
-    }
+  //   if(state == State.AcceptChallenge) {
+  //     let buttonLabel = "Accept Challenge"
+  //     buttons = [
+  //       {label: buttonLabel, action: 'post'}
+  //     ]
+  //   }
 
-    if (state == State.StartMatch) {
-      let buttonLabel = "Start Match"
-      buttons = [
-        {label: buttonLabel, action: 'post'}
-      ]
-    }
+  //   if (state == State.StartMatch) {
+  //     let buttonLabel = "Start Match"
+  //     buttons = [
+  //       {label: buttonLabel, action: 'post'}
+  //     ]
+  //   }
 
-    postUrl += "/api"
-  }
+  //   postUrl += "/api"
+  // }
 
-  if (!searchParams) {
+  // if (!searchParams) {
     let buttonLabel = 'Invalid Games';
     buttons = [
       {label: buttonLabel, action: 'post'}
     ]
-  }
+  // }
 
   let frameMetadata = getFrameMetadata({
                         buttons: buttons,
