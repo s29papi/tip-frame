@@ -33,18 +33,18 @@ export async function generateMetadata(
   let state; 
   let buttons: [FrameButtonMetadata, ...FrameButtonMetadata[]] = [{ label: "", action: 'post' },];
 
-  // if (searchParams) {
-  //   state = searchParams["state"];
-  //   const gameId = searchParams["gameId"];
-  //   const gameName = searchParams["gameName"];
-  //   const gameSetup = searchParams["gameSetup"];
-  //   const stakeAmount = searchParams["stakeAmount"];
-  //   const creatorFid = searchParams["creatorFid"];
-  //   let queryParams = `state=${state}&gameId=${gameId}&gameName=${gameName}&gameSetup=${gameSetup}&stakeAmount=${stakeAmount}&creatorFid=${creatorFid}`
-  //   imgUrl += '?'
-  //   imgUrl += queryParams
-  //   postUrl += '?'
-  // }
+  if (Object.keys(searchParams)) {
+    state = searchParams["state"];
+    const gameId = searchParams["gameId"];
+    const gameName = searchParams["gameName"];
+    const gameSetup = searchParams["gameSetup"];
+    const stakeAmount = searchParams["stakeAmount"];
+    const creatorFid = searchParams["creatorFid"];
+    let queryParams = `state=${state}&gameId=${gameId}&gameName=${gameName}&gameSetup=${gameSetup}&stakeAmount=${stakeAmount}&creatorFid=${creatorFid}`
+    imgUrl += '?'
+    imgUrl += queryParams
+    postUrl += '?'
+  }
 
   if (Object.keys(searchParams)) {
     if (state == State.Stake) {
