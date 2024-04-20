@@ -20,17 +20,17 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   let queryParams = `gameId=${gameId}&&gameName=${gameName}&&gameSetup=${gameSetup}&&stakeAmount=${stakeAmount}&&creatorFid=${creatorFid}`
   const FRAMES_URL = "https://versus-frame.vercel.app"; 
   let imageUrl = new URL("/og/landing", FRAMES_URL).href
-//   let imageUrl = "https://wag3r-bot-gamma.vercel.app/og/approve?" + `${queryParams}`
-  let postUrl = "https://wag3r-bot-gamma.vercel.app/api/frame/stake?" + `${queryParams}`
-//   <meta property="fc:frame:button:2:target" content="https://wag3r-bot-gamma.vercel.app/api/tx/approve"/>
+
+  let postUrl = "https://wag3r-bot-gamma.vercel.app/?" + `${queryParams}`
+
 
     return new NextResponse(`<!DOCTYPE html><html><head>
           <title>Start My Match</title>
           <meta property="fc:frame" content="vNext" />        
           <meta property="fc:frame:image" content="${imageUrl}"/>
-          <meta property="fc:frame:button:1" content="View Tx" />
+          <meta property="fc:frame:button:1" content="No Stream Link" />
           <meta property="fc:frame:button:1:action" content="post"/>
-          <meta property="fc:frame:button:2" content="Continue" />
+          <meta property="fc:frame:button:2" content="Finish Setup" />
           <meta property="fc:frame:button:2:action" content="post"/>
           <meta property="fc:frame:post_url" content="${postUrl}"/>
       </head></html>`);
