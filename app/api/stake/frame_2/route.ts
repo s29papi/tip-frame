@@ -19,7 +19,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   
   let queryParams = `gameId=${gameId}&&gameName=${gameName}&&gameSetup=${gameSetup}&&stakeAmount=${stakeAmount}&&creatorFid=${creatorFid}`
   const framesUrl = "https://versus-frame.vercel.app"; 
-  let imageUrl = new URL("/og/stake/frame_2", framesUrl).href
+  let imageUrl = new URL(`/og/stake/frame_2?${queryParams}`, framesUrl).href
 
   let postUrl = new URL(`/api/stake/frame_3?${queryParams}`, framesUrl).href
 
