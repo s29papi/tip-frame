@@ -58,18 +58,20 @@ export async function generateMetadata(
     }
 
     if (state == FrameState.StartMatch) {
-      let buttonLabel = "Start Match"
+      let buttonLabel_1 = "Ready up!"
+      let buttonLabel_2 = "Forfeit"
       buttons = [
-        {label: buttonLabel, action: 'post'}
+        {label: buttonLabel_1, action: 'post'},
+        {label: buttonLabel_2, action: 'post'},
       ]
     }
   }
 
-  if (Object.keys(searchParams)) {
+  if (searchParams) {
     postUrl += "/api" + state
   }
 
-  if (!Object.keys(searchParams)) {
+  if (searchParams) {
     let buttonLabel = 'Invalid Games';
     buttons = [
       {label: buttonLabel, action: 'post'}
