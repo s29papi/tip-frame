@@ -68,7 +68,7 @@ export async function generateMetadata(
   }
 
   if (searchParams) {
-    postUrl += "/api" + state
+    postUrl += "/api" + searchParams
   }
 
   if (!searchParams) {
