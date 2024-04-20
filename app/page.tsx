@@ -41,7 +41,7 @@ export async function generateMetadata(
     const creatorFid = searchParams["creatorFid"];
     let queryParams = `state=${state}&gameId=${gameId}&gameName=${gameName}&gameSetup=${gameSetup}&stakeAmount=${stakeAmount}&creatorFid=${creatorFid}`
     imgUrl += '?' + queryParams
-    postUrl += '?' + queryParams
+  
 
 
     if (state == FrameState.Stake) {
@@ -50,6 +50,7 @@ export async function generateMetadata(
         {label: buttonLabel, action: 'post'}
       ]
       postUrl += "/api/stake/frame_2"
+      postUrl += '?' + queryParams
     }
 
     if (state == FrameState.AcceptChallenge) {
