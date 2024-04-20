@@ -1,23 +1,12 @@
-import { redirect } from 'next/navigation'
 import { FrameButtonMetadata, FrameInputMetadata, getFrameMetadata } from '@coinbase/onchainkit';
 import type { Metadata, ResolvingMetadata } from 'next';
 
 
 type Props = {
-  params: { urlState: string, gameId: string }
   searchParams: { [key: string]: string | string[] | undefined }
 }
 
-enum State {
-  Stake = "stake",
-  AcceptChallenge = "accept-challenge",
-  StartMatch = "start-match", 
-  CompleteMatch = "complete-match"
-}
 
-
-const REDIRECT_URL = process.env.NEXT_PUBLIC_REDIRECT_URL || "https://www.projectstadium.com/";
-const FRAMES_URL = "https://versus-frame.vercel.app"; 
 
 /**
  * Rulesets:
@@ -25,52 +14,58 @@ const FRAMES_URL = "https://versus-frame.vercel.app";
  * Valid-Game-URL: ?state=${state}&&gameId=${gameId}&&gameName=${gameName}&&gameSetup=${gameSetup}&&stakeAmount=${stakeAmount}&&creatorFid=${creatorFid}
 */
 export async function generateMetadata(
-  { params, searchParams }: Props,
+  { searchParams }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  let state = searchParams["state"]
-  // let imgUrl = new URL("/og/landing", FRAMES_URL).href
- 
-  
+  const framesUrl = new URL("https://versus-frame.vercel.app"); 
+  let imgUrl = new URL("/og/landing", framesUrl).href
+  let postUrl = new URL("/", framesUrl).href
+  let state;
+
+  enum FrameState {
+    Stake = "stake",
+    AcceptChallenge = "accept-challenge",
+    StartMatch = "start-match", 
+    CompleteMatch = "complete-match"
+  }
+
   let buttons: [FrameButtonMetadata, ...FrameButtonMetadata[]] = [{ label: "", action: 'post' },];
-  let imgUrl = "https://versus-frame.vercel.app/og/landing"
-  let postUrl = new URL("/", FRAMES_URL).href
 
-  // if (searchParams) {
-  //   state = searchParams["state"];
-  //   const gameId = searchParams["gameId"];
-  //   const gameName = searchParams["gameName"];
-  //   const gameSetup = searchParams["gameSetup"];
-  //   const stakeAmount = searchParams["stakeAmount"];
-  //   const creatorFid = searchParams["creatorFid"];
-  //   let queryParams = `state=${state}&gameId=${gameId}&gameName=${gameName}&gameSetup=${gameSetup}&stakeAmount=${stakeAmount}&creatorFid=${creatorFid}`
-  //   imgUrl += '?'
-  //   imgUrl += queryParams
-  //   postUrl += '?'
-  // }
+  if (searchParams) {
+    state = searchParams["state"];
+    const gameId = searchParams["gameId"];
+    const gameName = searchParams["gameName"];
+    const gameSetup = searchParams["gameSetup"];
+    const stakeAmount = searchParams["stakeAmount"];
+    const creatorFid = searchParams["creatorFid"];
+    let queryParams = `state=${state}&gameId=${gameId}&gameName=${gameName}&gameSetup=${gameSetup}&stakeAmount=${stakeAmount}&creatorFid=${creatorFid}`
+    imgUrl += '?'
+    imgUrl += queryParams
+    postUrl += '?'
 
-  if (Object.keys(searchParams)) {
-    if (state == State.Stake) {
+    if (state == FrameState.Stake) {
       let buttonLabel = "Stake"
       buttons = [
         {label: buttonLabel, action: 'post'}
       ]
     }
 
-    if(state == State.AcceptChallenge) {
+    if (state == FrameState.AcceptChallenge) {
       let buttonLabel = "Accept Challenge"
       buttons = [
         {label: buttonLabel, action: 'post'}
       ]
     }
 
-    if (state == State.StartMatch) {
+    if (state == FrameState.StartMatch) {
       let buttonLabel = "Start Match"
       buttons = [
         {label: buttonLabel, action: 'post'}
       ]
     }
+  }
 
+  if (Object.keys(searchParams)) {
     postUrl += "/api" + state
   }
 
@@ -104,6 +99,6 @@ export async function generateMetadata(
 
 export default async function Page() {
   return (
-    <div>jdjdj</div>
+    <div>Versus By Stadium.</div>
   )
 }
