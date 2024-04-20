@@ -17,11 +17,11 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   const creatorFid:any = searchParams.get("creatorFid");
 //   const buttonId = body.untrustedData.buttonIndex;
   
-  let queryParams = `gameId=${gameId}&&gameName=${gameName}&&gameSetup=${gameSetup}&&stakeAmount=${stakeAmount}&&creatorFid=${creatorFid}`
+  let queryParams = `state=accept-challenge&&gameId=${gameId}&&gameName=${gameName}&&gameSetup=${gameSetup}&&stakeAmount=${stakeAmount}&&creatorFid=${creatorFid}`
   const framesUrl = "https://versus-frame.vercel.app"; 
   let imageUrl = new URL("/og/landing", framesUrl).href
 
-  let postUrl = new URL(`/api/stake/frame_3?${queryParams}`, framesUrl).href
+  let postUrl = new URL(`/?${queryParams}`, framesUrl).href
 
 
     return new NextResponse(`<!DOCTYPE html><html><head>
@@ -30,7 +30,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
           <meta property="fc:frame:image" content="${imageUrl}"/>
           <meta property="fc:frame:button:1" content="View Tx" />
           <meta property="fc:frame:button:1:action" content="post"/>
-          <meta property="fc:frame:button:2" content="Continue" />
+          <meta property="fc:frame:button:2" content="Complete" />
           <meta property="fc:frame:button:2:action" content="post"/>
           <meta property="fc:frame:post_url" content="${postUrl}"/>
       </head></html>`);

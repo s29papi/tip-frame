@@ -21,17 +21,15 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   const framesUrl = "https://versus-frame.vercel.app"; 
   let imageUrl = new URL("/og/landing", framesUrl).href
 
-  let postUrl = new URL(`/api/stake/frame_3?${queryParams}`, framesUrl).href
+  let postUrl = new URL(`/api/accept-challenge/frame_3?${queryParams}`, framesUrl).href
 
 
     return new NextResponse(`<!DOCTYPE html><html><head>
           <title>Start My Match</title>
           <meta property="fc:frame" content="vNext" />        
           <meta property="fc:frame:image" content="${imageUrl}"/>
-          <meta property="fc:frame:button:1" content="View Tx" />
+          <meta property="fc:frame:button:1" content="Stake" />
           <meta property="fc:frame:button:1:action" content="post"/>
-          <meta property="fc:frame:button:2" content="Continue" />
-          <meta property="fc:frame:button:2:action" content="post"/>
           <meta property="fc:frame:post_url" content="${postUrl}"/>
       </head></html>`);
 }

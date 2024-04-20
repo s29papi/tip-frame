@@ -58,6 +58,8 @@ export async function generateMetadata(
       buttons = [
         {label: buttonLabel, action: 'post'}
       ]
+      postUrl += "/api/accept-challenge/frame_2"
+      postUrl += '?' + queryParams
     }
 
     if (state == FrameState.StartMatch) {
