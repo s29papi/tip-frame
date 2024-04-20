@@ -20,7 +20,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const framesUrl = new URL("https://versus-frame.vercel.app"); 
   let imgUrl = new URL("/og/landing", framesUrl).href
-  let postUrl = new URL("/", framesUrl).href
+  let postUrl = new URL("/api", framesUrl).href
   let state;
 
   enum FrameState {
@@ -49,7 +49,7 @@ export async function generateMetadata(
       buttons = [
         {label: buttonLabel, action: 'post'}
       ]
-      postUrl += "/api/stake/frame_2"
+      postUrl += "/stake/frame_2"
       postUrl += '?' + queryParams
     }
 
@@ -58,7 +58,7 @@ export async function generateMetadata(
       buttons = [
         {label: buttonLabel, action: 'post'}
       ]
-      postUrl += "/api/accept-challenge/frame_2"
+      postUrl += "/accept-challenge/frame_2"
       postUrl += '?' + queryParams
     }
 
@@ -69,7 +69,7 @@ export async function generateMetadata(
         {label: buttonLabel_1, action: 'post'},
         {label: buttonLabel_2, action: 'post'},
       ]
-      postUrl += "/api/start-match/frame_2"
+      postUrl += "/start-match/frame_2"
       postUrl += '?' + queryParams
     }
 
