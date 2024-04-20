@@ -69,6 +69,8 @@ export async function generateMetadata(
         {label: buttonLabel_1, action: 'post'},
         {label: buttonLabel_2, action: 'post'},
       ]
+      postUrl += "/api/start-match/frame_2"
+      postUrl += '?' + queryParams
     }
 
     if (state == FrameState.CompleteMatch) {
