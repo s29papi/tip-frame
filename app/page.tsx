@@ -74,7 +74,7 @@ export async function generateMetadata(
     if (state == FrameState.CompleteMatch) {
       let buttonLabel = "Claim"
       buttons = [
-        {label: buttonLabel, action: 'post'}
+        {label: buttonLabel, action: 'post'} // change to tx
       ]
     }
 
