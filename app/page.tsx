@@ -49,7 +49,7 @@ export async function generateMetadata(
       buttons = [
         {label: buttonLabel, action: 'post'}
       ]
-      postUrl += "/api/stake"
+      postUrl += "/api/stake/frame_2"
     }
 
     if (state == FrameState.AcceptChallenge) {
@@ -82,10 +82,6 @@ export async function generateMetadata(
         {label: buttonLabel, action: 'post'}
       ]
     }
-  }
-
-  if (searchParams) {
-    postUrl += "/api" 
   }
 
 
