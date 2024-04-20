@@ -71,7 +71,7 @@ export async function generateMetadata(
     postUrl += "/api" + state
   }
 
-  if (searchParams) {
+  if (!searchParams) {
     let buttonLabel = 'Invalid Games';
     buttons = [
       {label: buttonLabel, action: 'post'}
