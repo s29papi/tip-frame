@@ -65,18 +65,19 @@ export async function generateMetadata(
         {label: buttonLabel_2, action: 'post'},
       ]
     }
+
+    if (state != FrameState.Stake && state != FrameState.AcceptChallenge && state != FrameState.StartMatch) {
+      let buttonLabel = 'Invalid Games';
+      buttons = [
+        {label: buttonLabel, action: 'post'}
+      ]
+    }
   }
 
   if (searchParams) {
-    postUrl += "/api" + searchParams
+    postUrl += "/api" 
   }
 
-  if (!searchParams) {
-    let buttonLabel = 'Invalid Games';
-    buttons = [
-      {label: buttonLabel, action: 'post'}
-    ]
-  }
 
   let frameMetadata = getFrameMetadata({
                         buttons: buttons,
