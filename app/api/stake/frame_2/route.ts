@@ -21,7 +21,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   const framesUrl = "https://versus-frame.vercel.app"; 
   let imageUrl = new URL("/og/landing", framesUrl).href
 
-  let postUrl = new URL(`/?${queryParams}/stake/frame_3`, framesUrl).href
+  let postUrl = new URL(`/stake/frame_3?${queryParams}`, framesUrl).href
 
 
     return new NextResponse(`<!DOCTYPE html><html><head>
