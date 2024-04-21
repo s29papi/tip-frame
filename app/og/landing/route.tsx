@@ -23,6 +23,11 @@ export async function GET(req: Request) {
         return await ogImgNoQueryParams()
     }
     
+    if (FrameState.StartMatch == state) {
+        const statement = `READY TO START CHALLENGE ?`
+        return await ogImgWithQueryParams(statement)
+    }
+    
     
    
     
