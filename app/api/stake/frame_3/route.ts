@@ -17,7 +17,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   const creatorFid:any = searchParams.get("creatorFid");
   const buttonId = body.untrustedData.buttonIndex;
   
-  let queryParams = `gameId=${gameId}&&gameName=${gameName}&&gameSetup=${gameSetup}&&stakeAmount=${stakeAmount}&&creatorFid=${creatorFid}`
+  let queryParams = `state=stake&&gameId=${gameId}&&gameName=${gameName}&&gameSetup=${gameSetup}&&stakeAmount=${stakeAmount}&&creatorFid=${creatorFid}`
   const FRAMES_URL = "https://versus-frame.vercel.app"; 
   let imageUrl = new URL("/og/stake/frame_3", FRAMES_URL).href
 

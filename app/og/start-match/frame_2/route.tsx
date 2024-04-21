@@ -155,7 +155,7 @@ async function ogImgWithStatement(stakeAmount: string, creatorFid: string, gameN
                     name: 'Titillium Web Regular',
                     data: fontData2,
                     style: "normal",
-                    weight: 900
+                    weight: 900    
                 },
             ]
         }

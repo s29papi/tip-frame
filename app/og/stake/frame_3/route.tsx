@@ -31,7 +31,7 @@ async function ogImgNoStatement(stakeAmount: string, creatorFid: string, gameNam
       .then(response => response.json())
       .catch(err => console.error(err));
   
-    const pfpUrl = userJson.users[0].pfp_url;
+    const pfpUrl = userJson.users[0].pfp_url;       
 
     const fontData1 = await fetch(
         new URL('../../../../assets/TitilliumWeb-Regular.ttf', import.meta.url),
