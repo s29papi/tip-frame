@@ -5,11 +5,25 @@ import { ImageResponse } from 'next/og'
 export const runtime = 'edge';
 
 export async function GET(req: Request) {
+    enum FrameState {
+        Stake = "stake",
+        AcceptChallenge = "accept-challenge",
+        StartMatch = "start-match", 
+        CompleteMatch = "complete-match"
+      }
+
     const { searchParams } = new URL(req.url);
-    if (searchParams.size != 0) {
+    const state = searchParams.get('state')
+    if (FrameState.Stake == state) {
         const stakeAmount = searchParams.get('stakeAmount')
         return await ogImgWithQueryParams(stakeAmount)
     }
+    if (FrameState.AcceptChallenge == state) {
+        return await ogImgNoQueryParams()
+    }
+    
+    
+   
     
    return await ogImgNoQueryParams()
 }
