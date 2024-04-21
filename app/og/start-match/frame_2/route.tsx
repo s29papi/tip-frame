@@ -53,7 +53,7 @@ async function ogImgWithQueryParams(statement: string): ImageResponse {
         (res) => res.arrayBuffer(),
       );
       const fontData = await fetch(
-        new URL('../../../assets/TitilliumWeb-Italic.ttf', import.meta.url),
+        new URL('../../../../assets/TitilliumWeb-Italic.ttf', import.meta.url),
       ).then((res) => res.arrayBuffer());
     return new ImageResponse(
         (
