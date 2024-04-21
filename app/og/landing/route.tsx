@@ -15,8 +15,8 @@ export async function GET(req: Request) {
     const { searchParams } = new URL(req.url);
     const state = searchParams.get('state')
     if (FrameState.Stake == state) {
-        const stakeAmount = searchParams.get('stakeAmount')
-        return await ogImgWithQueryParams(stakeAmount)
+        // const stakeAmount = searchParams.get('stakeAmount')
+        // return await ogImgWithQueryParams(stakeAmount)
     }
     if (FrameState.AcceptChallenge == state) {
         return await ogImgNoQueryParams()
