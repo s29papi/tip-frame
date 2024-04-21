@@ -63,7 +63,7 @@ export async function generateMetadata(
     }
 
     if (state == FrameState.StartMatch) {
-      let buttonLabel_1 = "Ready up!"
+      let buttonLabel_1 = "Ready"
       let buttonLabel_2 = "Forfeit"
       buttons = [
         {label: buttonLabel_1, action: 'post'},

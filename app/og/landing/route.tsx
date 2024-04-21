@@ -15,8 +15,9 @@ export async function GET(req: Request) {
     const { searchParams } = new URL(req.url);
     const state = searchParams.get('state')
     if (FrameState.Stake == state) {
-        // const stakeAmount = searchParams.get('stakeAmount')
-        // return await ogImgWithQueryParams(stakeAmount)
+        const stakeAmount = searchParams.get('stakeAmount')
+        const statement = `STAKE` + stakeAmount
+        return await ogImgWithQueryParams(statement)
     }
     if (FrameState.AcceptChallenge == state) {
         return await ogImgNoQueryParams()
@@ -42,7 +43,7 @@ async function ogImgNoQueryParams(): ImageResponse {
     )
 }
 
-async function ogImgWithQueryParams(stakeAmountWithToken: string): ImageResponse {
+async function ogImgWithQueryParams(statement: string): ImageResponse {
     const ogImgWithQueryParams = await fetch(new URL('../../../public/ogImgWithQueryParams.png', import.meta.url)).then(
         (res) => res.arrayBuffer(),
       );
@@ -57,7 +58,7 @@ async function ogImgWithQueryParams(stakeAmountWithToken: string): ImageResponse
                             style={{display: 'flex', position: 'absolute', top: '65%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center', color: '#66757F', fontSize: '72px', fontWeight: '1200', fontFamily: '"Titillium Web"'}}
                         > 
                             <span>
-                                STAKE {stakeAmountWithToken}
+                                {statement}
                             </span>
                         </div>
             </div>
