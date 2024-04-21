@@ -31,7 +31,7 @@ export async function GET(req: Request) {
     
    
     const statement = `CANCEL MATCH AND UNSTAKE`
-   return await ogImgWithQueryParams()
+   return await ogImgWithQueryParams(statement)
 }
 
 async function ogImgNoQueryParams(): ImageResponse {
