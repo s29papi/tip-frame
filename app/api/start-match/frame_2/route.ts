@@ -17,12 +17,12 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   const creatorFid:any = searchParams.get("creatorFid");
   const buttonId = body.untrustedData.buttonIndex;
 
-  let queryParams = `state=start-match&&gameId=${gameId}&&gameName=${gameName}&&gameSetup=${gameSetup}&&stakeAmount=${stakeAmount}&&creatorFid=${creatorFid}`
+  let queryParams = `gameId=${gameId}&&gameName=${gameName}&&gameSetup=${gameSetup}&&stakeAmount=${stakeAmount}&&creatorFid=${creatorFid}`
   const framesUrl = "https://versus-frame.vercel.app"; 
-  let imageUrl = new URL("/og/landing", framesUrl).href
+  let imageUrl = new URL(`/og/landing/?${queryParams}`, framesUrl).href
   let unstakeImageUrl = new URL(`/og/start-match/frame_2/?${queryParams}`, framesUrl).href
   let startMatchPostUrl = new URL(`/?${queryParams}`, framesUrl).href
-
+     
   if (buttonId == 1) {
     return new NextResponse(`<!DOCTYPE html><html><head>
         <title>Start My Match</title>
