@@ -20,6 +20,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   let queryParams = `state=start-match&&gameId=${gameId}&&gameName=${gameName}&&gameSetup=${gameSetup}&&stakeAmount=${stakeAmount}&&creatorFid=${creatorFid}`
   const framesUrl = "https://versus-frame.vercel.app"; 
   let imageUrl = new URL("/og/landing", framesUrl).href
+  let unstakeImageUrl = new URL(`/og/start-match/frame_2/?${queryParams}`, framesUrl).href
   let startMatchPostUrl = new URL(`/?${queryParams}`, framesUrl).href
 
   if (buttonId == 1) {
@@ -38,7 +39,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
     return new NextResponse(`<!DOCTYPE html><html><head>
     <title>Start My Match</title>
     <meta property="fc:frame" content="vNext" />        
-    <meta property="fc:frame:image" content="${imageUrl}"/>
+    <meta property="fc:frame:image" content="${unstakeImageUrl}"/>
     <meta property="fc:frame:button:1" content="Back" />
     <meta property="fc:frame:button:1:action" content="post"/>
     <meta property="fc:frame:button:2" content="Unstake" />
