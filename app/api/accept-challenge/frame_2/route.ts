@@ -10,7 +10,7 @@ import { NextRequest, NextResponse } from 'next/server';
 async function getResponse(req: NextRequest): Promise<NextResponse> {
   const body: FrameRequest = await req.json();
   const searchParams = req.nextUrl.searchParams;
-  const state:any = searchParams.get("state");
+  const state:any = "stake"
   const gameId:any = searchParams.get("gameId");
   const gameName:any = searchParams.get("gameName");
   const gameSetup:any = searchParams.get("gameSetup");
