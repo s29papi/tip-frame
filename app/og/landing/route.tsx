@@ -36,6 +36,7 @@ async function ogImgNoQueryParams(): ImageResponse {
         (
             <div style={{position: 'relative', display: 'flex'}}>
                       <img tw='h-full' alt='image used for no query params' src={ImgNoQueryParams}/>
+                      <div>d</div>
             </div>
         )
     )
