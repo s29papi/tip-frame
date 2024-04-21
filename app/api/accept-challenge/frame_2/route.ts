@@ -10,6 +10,7 @@ import { NextRequest, NextResponse } from 'next/server';
 async function getResponse(req: NextRequest): Promise<NextResponse> {
   const body: FrameRequest = await req.json();
   const searchParams = req.nextUrl.searchParams;
+  const state:any = searchParams.get("state");
   const gameId:any = searchParams.get("gameId");
   const gameName:any = searchParams.get("gameName");
   const gameSetup:any = searchParams.get("gameSetup");
@@ -17,9 +18,9 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   const creatorFid:any = searchParams.get("creatorFid");
 //   const buttonId = body.untrustedData.buttonIndex;
   
-  let queryParams = `gameId=${gameId}&&gameName=${gameName}&&gameSetup=${gameSetup}&&stakeAmount=${stakeAmount}&&creatorFid=${creatorFid}`
+  let queryParams = `state=${state}&&gameId=${gameId}&&gameName=${gameName}&&gameSetup=${gameSetup}&&stakeAmount=${stakeAmount}&&creatorFid=${creatorFid}`
   const framesUrl = "https://versus-frame.vercel.app"; 
-  let imageUrl = new URL("/og/landing", framesUrl).href
+  let imageUrl = new URL(`/og/stake/frame_2?${queryParams}`, framesUrl).href
 
   let postUrl = new URL(`/api/accept-challenge/frame_3?${queryParams}`, framesUrl).href
 
