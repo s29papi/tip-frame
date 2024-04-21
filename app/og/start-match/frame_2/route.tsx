@@ -35,7 +35,7 @@ export async function GET(req: Request) {
 }
 
 async function ogImgNoQueryParams(): ImageResponse {
-    const ImgNoQueryParams = await fetch(new URL('../../../public/ogImgNoQueryParams.png', import.meta.url)).then(
+    const ImgNoQueryParams = await fetch(new URL('../../../../public/ogImgNoQueryParams.png', import.meta.url)).then(
         (res) => res.arrayBuffer(),
       );
     return new ImageResponse(
@@ -49,7 +49,7 @@ async function ogImgNoQueryParams(): ImageResponse {
 }
 
 async function ogImgWithQueryParams(statement: string): ImageResponse {
-    const ogImgWithQueryParams = await fetch(new URL('../../../public/ogImgWithQueryParams.png', import.meta.url)).then(
+    const ogImgWithQueryParams = await fetch(new URL('../../../../public/ogImgWithQueryParams.png', import.meta.url)).then(
         (res) => res.arrayBuffer(),
       );
       const fontData = await fetch(
