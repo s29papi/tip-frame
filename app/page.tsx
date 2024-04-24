@@ -8,12 +8,6 @@ type Props = {
 
 
 
-/**
- * Rulesets:
- * Demo-Url: https://versus-frame.vercel.app/?state=stake&&gameId=1&&gameName=Test%20Game&&gameSetup=one%20two&&stakeAmount=100%20usdc&&creatorFid=112
- * Valid-Game-URL: ?state=${state}&&gameId=${gameId}&&gameName=${gameName}&&gameSetup=${gameSetup}&&stakeAmount=${stakeAmount}&&creatorFid=${creatorFid}
- * Each state has it's own api
-*/
 export async function generateMetadata(
   { searchParams }: Props,
   parent: ResolvingMetadata
