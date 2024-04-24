@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 
 const FRAMES_URL = process.env.FRAMES_URL || "https://tip-frame.vercel.app"
 const imageUrl = new URL("/og/tipPage", FRAMES_URL).href
-const postUrl = new URL("/", FRAMES_URL).href
+const postUrl = new URL("/api/tip-toshi-success", FRAMES_URL).href
 
 const frameMetadata = getFrameMetadata({
   buttons: [
