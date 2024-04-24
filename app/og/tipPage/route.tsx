@@ -5,7 +5,7 @@ import { ImageResponse } from 'next/og'
 export const runtime = 'edge';
 
 export async function GET(req: Request) { 
-   return ImageResponse (
+   return new ImageResponse (
     (
         <div>
             Hello, World
