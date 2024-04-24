@@ -7,7 +7,7 @@ const postUrl = new URL("/", FRAMES_URL).href
 
 const frameMetadata = getFrameMetadata({
   buttons: [
-      {label: 'TIP', action: 'post'},
+      {label: 'TIP', action: 'tx', target: `${FRAMES_URL}/api/tip-toshi-tx`, postUrl: `${FRAMES_URL}/api/tip-toshi-tx` },
   ],
   image: imageUrl,
   post_url: postUrl,
