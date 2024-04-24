@@ -1,112 +1,35 @@
-import { FrameButtonMetadata, FrameInputMetadata, getFrameMetadata } from '@coinbase/onchainkit';
-import type { Metadata, ResolvingMetadata } from 'next';
+import { getFrameMetadata } from '@coinbase/onchainkit';
+import type { Metadata } from 'next';
 
+const FRAMES_URL = process.env.FRAMES_URL || "https://tip-frame.vercel.app/"
+const imageUrl = new URL("/3dns-buy-a-domain-rescale.png", FRAMES_URL).href
+const postUrl = new URL("/", FRAMES_URL).href
 
-type Props = {
-  searchParams: { [key: string]: string | string[] | undefined }
-}
+const frameMetadata = getFrameMetadata({
+  buttons: [
+      {label: 'TIP', action: 'post'},
+  ],
+  image: imageUrl,
+  post_url: postUrl,
 
+});
 
-
-export async function generateMetadata(
-  { searchParams }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  const framesUrl = new URL("https://versus-frame.vercel.app"); 
-  let imgUrl = new URL("/og/landing", framesUrl).href
-  let postUrl = new URL("/api", framesUrl).href
-  let state;
-
-  enum FrameState {
-    Stake = "stake",
-    AcceptChallenge = "accept-challenge",
-    StartMatch = "start-match", 
-    CompleteMatch = "complete-match"
-  }
-
-  let buttons: [FrameButtonMetadata, ...FrameButtonMetadata[]] = [{ label: "", action: 'post' },];
-
-  if (searchParams) {
-    state = searchParams["state"];
-    const gameId = searchParams["gameId"];
-    const gameName = searchParams["gameName"];
-    const gameSetup = searchParams["gameSetup"];
-    const stakeAmount = searchParams["stakeAmount"];
-    const creatorFid = searchParams["creatorFid"];
-    let queryParams = `state=${state}&gameId=${gameId}&gameName=${gameName}&gameSetup=${gameSetup}&stakeAmount=${stakeAmount}&creatorFid=${creatorFid}`
-    imgUrl += '?' + queryParams
-  
-
-
-    if (state == FrameState.Stake) {
-      let buttonLabel = "Stake"
-      buttons = [
-        {label: buttonLabel, action: 'post'}
-      ]
-      postUrl += "/stake/frame_2"
-      postUrl += '?' + queryParams
-    }
-
-    if (state == FrameState.AcceptChallenge) {
-      let buttonLabel = "Accept Challenge"
-      buttons = [
-        {label: buttonLabel, action: 'post'}
-      ]
-      postUrl += "/accept-challenge/frame_2"
-      postUrl += '?' + queryParams
-    }
-
-    if (state == FrameState.StartMatch) {
-      let buttonLabel_1 = "Ready"
-      let buttonLabel_2 = "Forfeit"
-      buttons = [
-        {label: buttonLabel_1, action: 'post'},
-        {label: buttonLabel_2, action: 'post'},
-      ]
-      postUrl += "/start-match/frame_2"
-      postUrl += '?' + queryParams
-    }
-
-    if (state == FrameState.CompleteMatch) {
-      let buttonLabel = "Claim"
-      buttons = [
-        {label: buttonLabel, action: 'post'} // change to tx
-      ]
-    }
-
-
-    if (state != FrameState.Stake && state != FrameState.AcceptChallenge && state != FrameState.StartMatch && state != FrameState.CompleteMatch) {
-      let buttonLabel = 'Invalid Games';
-      buttons = [
-        {label: buttonLabel, action: 'post'}
-      ]
-    }
-  }
-
-
-  let frameMetadata = getFrameMetadata({
-                        buttons: buttons,
-                        image: imgUrl,
-                        post_url: postUrl,
-                      });
-
-
-  return {
-    title: 'Versus By Stadium',
-    description: 'Bets and Stake management in a frame',
-    openGraph: {
-      title: 'Versus By Stadium',
-      description: 'Bets and Stake management in a frame',
-      images: [imgUrl],
-    },
-    other: {
-      ...frameMetadata
-    }
-  }
-}
+export const metadata: Metadata = {
+  title: 'TIP FRAME.',
+  description: 'A frame to Tip a facaster',
+  openGraph: {
+    title: 'TIP FRAME.',
+    description: 'A frame to Tip a facaster',
+    images: [imageUrl],
+  },
+  other: {
+    'of:accepts:xmtp': '2024-02-01',
+    ...frameMetadata,
+  },
+};
 
 export default async function Page() {
   return (
-    <div>Versus By Stadium.</div>
+    <div>Tip Frame</div>
   )
 }
