@@ -7,7 +7,7 @@ const FRAMES_URL = process.env.FRAMES_URL || "https://tip-frame.vercel.app"
 const imageUrl = new URL("/og/tipPage", FRAMES_URL).href
 const postUrl = new URL("/", FRAMES_URL).href
 async function getResponse(req: NextRequest): Promise<NextResponse> {
-  await markAsTipped(db)
+  // await markAsTipped(db)
   const body: FrameRequest = await req.json();
   const { isValid } = await getFrameMessage(body);
 
