@@ -1,6 +1,7 @@
 import { FrameRequest, getFrameMessage } from '@coinbase/onchainkit';
 import { NextRequest, NextResponse } from 'next/server';
-
+import { db } from '@/app/firebase-db/firebase-setup';
+import { Firestore, collection, addDoc, updateDoc } from 'firebase/firestore/lite';
 
 // (async (db: Firestore) => {
 //   const tipCollection = collection(db, 'tip')
@@ -18,6 +19,13 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   if (!isValid) {
     return new NextResponse('Message not valid', { status: 500 });
   }
+
+ try {
+  const tipCollection = collection(db, 'tip')
+  let val = await addDoc(tipCollection, {tipId: 0, tipped: true })
+ } catch {
+
+ }
 
 
   
