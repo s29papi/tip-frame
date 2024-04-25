@@ -12,7 +12,7 @@ export async function GET(req: Request) {
    return new ImageResponse (
     (
         <div>
-            Hello, World {val.id} jkgu
+            Hello, World  jkgu
         </div>
     )
    )
