@@ -5,7 +5,6 @@ import { Firestore, collection, addDoc, updateDoc } from 'firebase/firestore/lit
 
 // (async (db: Firestore) => {
 //   const tipCollection = collection(db, 'tip')
-//   tipCollection.id
 //   await addDoc(tipCollection, {tipId: 0, tipped: true })
 // })(db)
 
@@ -20,6 +19,9 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   if (!isValid) {
     return new NextResponse('Message not valid', { status: 500 });
   }
+
+  const tipCollection = collection(db, 'tip')
+  await addDoc(tipCollection, {tipId: 0, tipped: true })
 
     return new NextResponse(`<!DOCTYPE html><html><head>
             <title>Start My Match</title>
