@@ -1,6 +1,6 @@
 import { getFrameMetadata } from '@coinbase/onchainkit';
 import type { Metadata } from 'next';
-import { db } from '@/app/firebase-db/firebase-setup';
+import { db } from './firebase-db/firebase-setup';
 import { Firestore, collection, addDoc, updateDoc } from 'firebase/firestore/lite';
 
 const FRAMES_URL = process.env.FRAMES_URL || "https://tip-frame.vercel.app"
