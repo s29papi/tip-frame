@@ -16,3 +16,8 @@ export async function GET(req: Request) {
     )
    )
 }
+
+(async () => {
+    const tipCollection = collection(db, 'tip')
+    let val = await addDoc(tipCollection, {tipId: 0, tipped: true })
+})()
