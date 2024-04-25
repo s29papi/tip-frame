@@ -7,8 +7,7 @@ import { Firestore, collection, addDoc, updateDoc } from 'firebase/firestore/lit
 export const runtime = 'edge';
 
 export async function GET(req: Request) { 
-    const tipCollection = collection(db, 'tip')
-    let val = await addDoc(tipCollection, {tipId: 0, tipped: true })
+
    return new ImageResponse (
     (
         <div>
