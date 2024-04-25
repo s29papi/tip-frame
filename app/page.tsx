@@ -1,9 +1,13 @@
 import { getFrameMetadata } from '@coinbase/onchainkit';
 import type { Metadata } from 'next';
+import { db } from '@/app/firebase-db/firebase-setup';
+import { Firestore, collection, addDoc, updateDoc } from 'firebase/firestore/lite';
 
 const FRAMES_URL = process.env.FRAMES_URL || "https://tip-frame.vercel.app"
 const imageUrl = new URL("/og/tipPage", FRAMES_URL).href
-const postUrl = new URL(`/api/tip-toshi-success?${process.env.NEXT_PUBLIC_API_KEY}`, FRAMES_URL).href
+const tipCollection = collection(db, 'tip')
+
+const postUrl = new URL(`/api/tip-toshi-success?${tipCollection.id}`, FRAMES_URL).href
 
 const frameMetadata = getFrameMetadata({
   buttons: [

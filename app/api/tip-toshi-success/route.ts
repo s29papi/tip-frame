@@ -3,10 +3,11 @@ import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/app/firebase-db/firebase-setup';
 import { Firestore, collection, addDoc, updateDoc } from 'firebase/firestore/lite';
 
-(async (db: Firestore) => {
-  const tipCollection = collection(db, 'tip')
-  await addDoc(tipCollection, {tipId: 0, tipped: true })
-})(db)
+// (async (db: Firestore) => {
+//   const tipCollection = collection(db, 'tip')
+//   tipCollection.id
+//   await addDoc(tipCollection, {tipId: 0, tipped: true })
+// })(db)
 
 const FRAMES_URL = process.env.FRAMES_URL || "https://tip-frame.vercel.app"
 const imageUrl = new URL("/og/tipPage", FRAMES_URL).href
@@ -15,7 +16,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   // await markAsTipped(db)
   const body: FrameRequest = await req.json();
   const { isValid } = await getFrameMessage(body);
-
+  const postUrl = new URL(`/${body.untrustedData.transactionId}`, FRAMES_URL).href
   if (!isValid) {
     return new NextResponse('Message not valid', { status: 500 });
   }
