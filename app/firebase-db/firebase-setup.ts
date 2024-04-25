@@ -1,5 +1,5 @@
 import "firebase/firestore";
-import { getFirestore } from 'firebase/firestore';
+import { getFirestore } from 'firebase/firestore/lite';
 
 
 import { initializeApp } from "firebase/app";
