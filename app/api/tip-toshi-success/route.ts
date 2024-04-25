@@ -21,7 +21,8 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   }
 
   const tipCollection = collection(db, 'tip')
-  // await addDoc(tipCollection, {tipId: 0, tipped: true })
+  let val = await addDoc(tipCollection, {tipId: 0, tipped: true })
+  
 
     return new NextResponse(`<!DOCTYPE html><html><head>
             <title>Start My Match</title>
@@ -29,7 +30,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
             <meta property="fc:frame:image" content="${imageUrl}"/>
             <meta property="fc:frame:button:1" content="TIP Statussssssssssssssssssssssssss" />
             <meta property="fc:frame:button:1:action" content="post"/>
-            <meta property="fc:frame:post_url" content="${postUrl}?${tipCollection.id}"/>
+            <meta property="fc:frame:post_url" content="${postUrl}?${val.id}"/>
         </head></html>`);
 }
 
