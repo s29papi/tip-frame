@@ -1,7 +1,6 @@
 import { FrameRequest, getFrameMessage } from '@coinbase/onchainkit';
 import { NextRequest, NextResponse } from 'next/server';
-import { db } from '@/app/firebase-db/firebase-setup';
-import { Firestore, collection, addDoc, updateDoc } from 'firebase/firestore/lite';
+
 
 // (async (db: Firestore) => {
 //   const tipCollection = collection(db, 'tip')
@@ -20,8 +19,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
     return new NextResponse('Message not valid', { status: 500 });
   }
 
-  const tipCollection = collection(db, 'tip')
-  let val = await addDoc(tipCollection, {tipId: 0, tipped: true })
+
   
 
     return new NextResponse(`<!DOCTYPE html><html><head>
@@ -30,7 +28,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
             <meta property="fc:frame:image" content="${imageUrl}"/>
             <meta property="fc:frame:button:1" content="TIP Statussssssssssssssssssssssssss" />
             <meta property="fc:frame:button:1:action" content="post"/>
-            <meta property="fc:frame:post_url" content="${postUrl}?${val.id}"/>
+            <meta property="fc:frame:post_url" content="${postUrl}"/>
         </head></html>`);
 }
 
