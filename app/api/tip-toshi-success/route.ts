@@ -19,10 +19,10 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   if (!isValid) {
     return new NextResponse('Message not valid', { status: 500 });
   }
-
+  let val;
  try {
   const tipCollection = collection(db, 'tip')
-  let val = await addDoc(tipCollection, {tipId: 0, tipped: true })
+  val = await addDoc(tipCollection, {tipId: 0, tipped: true })
  } catch {
 
  }
@@ -36,7 +36,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
             <meta property="fc:frame:image" content="${imageUrl}"/>
             <meta property="fc:frame:button:1" content="TIP Statussssssssssssssssssssssssss" />
             <meta property="fc:frame:button:1:action" content="post"/>
-            <meta property="fc:frame:post_url" content="${postUrl}"/>
+            <meta property="fc:frame:post_url" content="${postUrl}?${val?.id}"/>
         </head></html>`);
 }
 
