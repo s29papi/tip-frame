@@ -1,11 +1,13 @@
 import { FrameRequest, getFrameMessage } from '@coinbase/onchainkit';
 import { NextRequest, NextResponse } from 'next/server';
-
+import { db } from '@/app/firebase-db/firebase-setup';
+import { Firestore, collection, addDoc, updateDoc } from 'firebase/firestore/lite';
 
 const FRAMES_URL = process.env.FRAMES_URL || "https://tip-frame.vercel.app"
 const imageUrl = new URL("/og/tipPage", FRAMES_URL).href
 const postUrl = new URL("/", FRAMES_URL).href
 async function getResponse(req: NextRequest): Promise<NextResponse> {
+  await markAsTipped(db)
   const body: FrameRequest = await req.json();
   const { isValid } = await getFrameMessage(body);
 
@@ -28,3 +30,8 @@ export async function POST(req: NextRequest): Promise<Response> {
 }
 
 export const dynamic = 'force-dynamic';
+
+async function markAsTipped(db: Firestore) {
+  const tipCollection = collection(db, 'tip')
+  await addDoc(tipCollection, {tipId: 0, tipped: true })
+}
