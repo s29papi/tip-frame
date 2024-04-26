@@ -27,7 +27,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse | Response> {
      data = encodeFunctionData({
         abi: ToshiBaseABI,
         functionName: 'transfer',
-        args: [`0x${recAddr.slice(2)}`, parseUnits('1', 18) ], 
+        args: [`0x${recAddr[0].slice(2)}`, parseUnits('1', 18) ], 
       });
     }
   
