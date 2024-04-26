@@ -17,7 +17,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse | Response> {
       return new NextResponse('Message not valid', { status: 500 });
     }
 
-    const farcasterUserAddress = await getFarcasterUserAddress(24654, {
+    const farcasterUserAddress = await getFarcasterUserAddress(347, {
       neynarApiKey: 'NEYNAR_ONCHAIN_KIT', 
     });
     let recAddr = farcasterUserAddress?.verifiedAddresses
