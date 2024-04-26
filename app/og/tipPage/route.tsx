@@ -11,12 +11,7 @@ export async function GET(req: Request) {
     );
    return new ImageResponse (
     (
-        <div style={{position: 'relative', display: 'flex'}}>
-             <img tw='h-full' alt='image used for no query params' src={ogImgWithQueryParams}/>
-             <div tw="flex flex-col w-full h-full absolute">
-                dgd
-             </div>
-        </div>
+<div>djdjd</div>
     )
    )
 }
