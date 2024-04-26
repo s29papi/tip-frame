@@ -24,7 +24,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
     headers: {accept: 'application/json'}
   };
 
-  let data = await fetch("https://tip-frame.vercel.app/api/call-db", options)
+  let data = await fetch("https://tip-frame.vercel.app/api/call-db/frame_2", options)
   
 
     return new NextResponse(`<!DOCTYPE html><html><head>
