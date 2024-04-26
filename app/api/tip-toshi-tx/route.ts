@@ -14,22 +14,30 @@ async function getResponse(req: NextRequest): Promise<NextResponse | Response> {
     const body: FrameRequest = await req.json();
     const { isValid, message } = await getFrameMessage(body, { neynarApiKey: 'NEYNAR_ONCHAIN_KIT' });
     const toshi_amount = searchParams.get('amount')
+    const fid = searchParams.get('fid')
+    
     if (!isValid) {
       return new NextResponse('Message not valid', { status: 500 });
     }
 
-    const farcasterUserAddress = await getFarcasterUserAddress(347, {
-      neynarApiKey: 'NEYNAR_ONCHAIN_KIT', 
-    });
-    let recAddr = farcasterUserAddress?.verifiedAddresses
     let data;
 
-    if (recAddr && toshi_amount) {
-     data = encodeFunctionData({
-        abi: ToshiBaseABI,
-        functionName: 'transfer',
-        args: [`0x${recAddr[0].slice(2)}`, parseUnits(toshi_amount, 18) ], 
+
+    if (fid) {
+      const farcasterUserAddress = await getFarcasterUserAddress(parseInt(fid), {
+        neynarApiKey: 'NEYNAR_ONCHAIN_KIT', 
       });
+      let recAddr = farcasterUserAddress?.verifiedAddresses
+    
+  
+      if (recAddr && toshi_amount) {
+       data = encodeFunctionData({
+          abi: ToshiBaseABI,
+          functionName: 'transfer',
+          args: [`0x${recAddr[0].slice(2)}`, parseUnits(toshi_amount, 18) ], 
+        });
+      }
+  
     }
 
     
