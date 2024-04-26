@@ -1,17 +1,18 @@
 'use client';
-import { useRouter } from "next/router";
-import { useEffect } from "react";
+import {useRouter, useSearchParams} from "next/navigation";
+import {useEffect} from "react";
 
 export default function RedirectPage() {
+    const searchParams = useSearchParams();
     const router = useRouter();
-    const { query } = router;
-    const { txhash } = query;
+
+    const txhash = searchParams.get('txhash')
 
     useEffect(() => {
-        if (txhash) {
-            const baseUrl = `https://basescan.org/tx/${txhash}`;
-            window.location.href = baseUrl;
-        }
+        const baseUrl = `https://basescan.org/tx/${txhash}`;
+
+        // Perform the redirect
+        window.location.href = baseUrl;
     }, [router, txhash]);
 
     return (
