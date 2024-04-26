@@ -35,7 +35,7 @@ export async function GET(req: Request) {
              <div tw="flex flex-col w-full h-full absolute">
                 <div tw="flex h-full w-full">
                     <div tw="flex flex-col md:flex-row w-full py-12 px-4 justify-between p-8">
-                    <div style={{display: 'flex', position: 'absolute', top: '59%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center', color: '#66757F', fontSize: '72px', fontWeight: '1400'}}> 
+                    <div style={{display: 'flex', position: 'absolute', top: '62%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center', color: '#66757F', fontSize: '72px', fontWeight: '1400'}}> 
                                         <span tw="flex flex-col text-lg sm:text-xl md:flex-row w-full py-12 px-4 justify-between p-8">
                                                 <span tw="flex flex-col bottom-7" style={{fontFamily: '"Paytone One"', fontStyle: 'italic'}}>
                                                 <span tw="text-7xl top-[0.95] left-[10] text-white">{statement}</span>
