@@ -20,12 +20,13 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   }
   let val;
 
-  const tipCollection = collection(db, 'tip')
-  val = addDoc(tipCollection, {tipId: 0, tipped: true })
-  .then(response => response.id)
-  .then(response => val = response)
-  .catch(err => console.error(err));
-
+  const tipCollection = collection(db, 'tip');
+  val = addDoc(tipCollection, { tipId: 0, tipped: true })
+    .then(response => {
+      val = response.id;
+      return response.id; // Return the id for further chaining if needed
+    })
+    .catch(err => console.error(err));
     return new NextResponse(`<!DOCTYPE html><html><head>
             <title>Start My Match</title>
             <meta property="fc:frame" content="vNext" />        
