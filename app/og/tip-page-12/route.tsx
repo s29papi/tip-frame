@@ -13,8 +13,8 @@ export async function GET(req: Request) {
     );
 
     let statement = "" 
-    let tip = "true"
-    let tx = "false"
+    let tip = searchParams.get('tip')
+    let tx = searchParams.get('tx')
     if (tip == "true") {
         statement = `TIP ${amount} TOSHI`;
     }
