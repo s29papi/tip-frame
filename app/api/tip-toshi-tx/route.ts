@@ -7,12 +7,13 @@ import { getFarcasterUserAddress } from '@coinbase/onchainkit/farcaster';
  
 import ToshiBaseABI from "../../contracts-utils/toshi-abi";
 import { TOSHI_BASE_CONTRACT_ADDR } from '../../config';
-// import { RECIEVER_ADDR } from '../../config';
+
 
 async function getResponse(req: NextRequest): Promise<NextResponse | Response> {
+  const { searchParams } = new URL(req.url);
     const body: FrameRequest = await req.json();
     const { isValid, message } = await getFrameMessage(body, { neynarApiKey: 'NEYNAR_ONCHAIN_KIT' });
-  
+    const toshi_amount = searchParams.get('amount')
     if (!isValid) {
       return new NextResponse('Message not valid', { status: 500 });
     }
@@ -23,13 +24,16 @@ async function getResponse(req: NextRequest): Promise<NextResponse | Response> {
     let recAddr = farcasterUserAddress?.verifiedAddresses
     let data;
 
-    if (recAddr) {
+    if (recAddr && toshi_amount) {
      data = encodeFunctionData({
         abi: ToshiBaseABI,
         functionName: 'transfer',
-        args: [`0x${recAddr[0].slice(2)}`, parseUnits('1', 18) ], 
+        args: [`0x${recAddr[0].slice(2)}`, parseUnits(toshi_amount, 18) ], 
       });
     }
+
+    
+   
   
     const txData: FrameTransactionResponse = {
         chainId: `eip155:${base.id}`,
