@@ -1,39 +1,49 @@
-import { getFrameMetadata } from '@coinbase/onchainkit';
-import type { Metadata } from 'next';
-import { db } from './firebase-db/firebase-setup';
-import { Firestore, collection, addDoc, updateDoc } from 'firebase/firestore/lite';
+import { FrameButtonMetadata, FrameInputMetadata, getFrameMetadata } from '@coinbase/onchainkit';
+import type { Metadata, ResolvingMetadata } from 'next';
 
-const FRAMES_URL = process.env.FRAMES_URL || "https://tip-frame.vercel.app"
-const imageUrl = new URL("/og/tip-page-12", FRAMES_URL).href
-const tipCollection = collection(db, 'tip')
+type Props = {
+  searchParams: { [key: string]: string | string[] | undefined }
+}
 
-const postUrl = new URL(`/api/tip-toshi-success?${tipCollection.id}`, FRAMES_URL).href
+export async function generateMetadata(
+  { searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> { 
+  const framesUrl = new URL("https://tip-frame.vercel.app"); 
+  let imgUrl = new URL("/og/tip-page-12", framesUrl).href
+  let postUrl = new URL("/api/tip-toshi-success", framesUrl).href
+  let txPostUrl = new URL("/api/tip-toshi-tx", framesUrl).href
+  let frameMetadata;
+  let buttons: [FrameButtonMetadata, ...FrameButtonMetadata[]] = [{ label: "", action: 'post' },];
 
-const frameMetadata = getFrameMetadata({
-  buttons: [
-      {label: 'TIP', action: 'tx', target: `${FRAMES_URL}/api/tip-toshi-tx`, postUrl: `${FRAMES_URL}/api/tip-toshi-success` },
-  ],
-  image: {
-    src: imageUrl, 
-    aspectRatio: '1.91:1'
-  },
-  post_url: postUrl,
+  if (searchParams) {
+    let amount = searchParams["amount"];
+    imgUrl += '?' + `amount=${amount}`
+    txPostUrl += '?' + `amount=${amount}`
+    buttons = [
+      {label: 'TIP', action: 'tx', target: txPostUrl, postUrl: postUrl },
+    ]
 
-});
+    frameMetadata = getFrameMetadata({
+      buttons: buttons,
+      image: imgUrl,
+      post_url: postUrl,
+    });
+  }
 
-export const metadata: Metadata = {
-  title: 'TIP FRAME.',
-  description: 'A frame to Tip a facaster',
-  openGraph: {
-    title: 'TIP FRAME.',
-    description: 'A frame to Tip a facaster',
-    images: [imageUrl],
-  },
-  other: {
-    'of:accepts:xmtp': '2024-02-01',
-    ...frameMetadata,
-  },
-};
+  return {
+    title: 'Toshi Pay',
+    description: 'Tip Toshi To any one in frame',
+    openGraph: {
+      title: 'Toshi Pay',
+      description: 'Tip Toshi To any one in frame',
+      images: [imgUrl],
+    },
+    other: {
+      ...frameMetadata
+    }
+  }
+}
 
 export default async function Page() {
   return (
