@@ -10,11 +10,11 @@ import { Firestore, collection, addDoc, updateDoc } from 'firebase/firestore/lit
 
 const FRAMES_URL = process.env.FRAMES_URL || "https://tip-frame.vercel.app"
 const imageUrl = new URL("/og/tip-page-12?tx=true", FRAMES_URL).href
-const postUrl = new URL("/", FRAMES_URL).href
+
 async function getResponse(req: NextRequest): Promise<NextResponse> {
   const body: FrameRequest = await req.json();
   const { isValid } = await getFrameMessage(body);
-  const postUrl = new URL(`/${body.untrustedData.transactionId}`, FRAMES_URL).href
+  const postUrl = new URL(`/api/pre-redirect?txhash=${body.untrustedData.transactionId}`, FRAMES_URL).href
   if (!isValid) {
     return new NextResponse('Message not valid', { status: 500 });
   }
@@ -24,7 +24,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
             <meta property="fc:frame" content="vNext" />        
             <meta property="fc:frame:image" content="${imageUrl}"/>
             <meta property="fc:frame:button:1" content="View TX" />
-            <meta property="fc:frame:button:1:action" content="post"/>
+            <meta property="fc:frame:button:1:action" content="post_redirect"/>
             <meta property="fc:frame:post_url" content="${postUrl}"/>
         </head></html>`);
 }
