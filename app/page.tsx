@@ -13,7 +13,10 @@ const frameMetadata = getFrameMetadata({
   buttons: [
       {label: 'TIP', action: 'tx', target: `${FRAMES_URL}/api/tip-toshi-tx`, postUrl: `${FRAMES_URL}/api/tip-toshi-success` },
   ],
-  image: imageUrl,
+  image: {
+    src: imageUrl, 
+    aspectRatio: '1:1'
+  },
   post_url: postUrl,
 
 });
