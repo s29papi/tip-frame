@@ -23,44 +23,12 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   let unstakeImageUrl = new URL(`/og/start-match/frame_2/?${queryParams}`, framesUrl).href
   let startMatchPostUrl = new URL(`/?${queryParams}`, framesUrl).href
      
-  if (buttonId == 1) {
-    return new NextResponse(`<!DOCTYPE html><html><head>
-        <title>Start My Match</title>
-        <meta property="fc:frame" content="vNext" />        
-        <meta property="fc:frame:image" content="${imageUrl}"/>
-        <meta property="fc:frame:button:1" content="You are now ready to play!" />
-        <meta property="fc:frame:button:1:action" content="post"/>
-        <meta property="fc:frame:post_url" content="${startMatchPostUrl}"/>
-    </head></html>`);
-  }
-
-  // update during staking and unstaking
-  if (buttonId == 2) {
-    return new NextResponse(`<!DOCTYPE html><html><head>
-    <title>Start My Match</title>
-    <meta property="fc:frame" content="vNext" />        
-    <meta property="fc:frame:image" content="${unstakeImageUrl}"/>
-    <meta property="fc:frame:button:1" content="Back" />
-    <meta property="fc:frame:button:1:action" content="post"/>
-    <meta property="fc:frame:button:2" content="Unstake" />
-    <meta property="fc:frame:button:2:action" content="post"/>
-    <meta property="fc:frame:post_url" content="${startMatchPostUrl}"/>
-</head></html>`);
-  }
-  
 
 
   
 
 
-    return new NextResponse(`<!DOCTYPE html><html><head>
-          <title>Start My Match</title>
-          <meta property="fc:frame" content="vNext" />        
-          <meta property="fc:frame:image" content="${imageUrl}"/>
-          <meta property="fc:frame:button:1" content="Back" />
-          <meta property="fc:frame:button:1:action" content="post"/>
-          <meta property="fc:frame:post_url" content="${startMatchPostUrl}"/>
-      </head></html>`);
+  return NextResponse.json({ success: 'TX Successful' }, { status: 200 })
 }
 
 export async function POST(req: NextRequest): Promise<Response> {
