@@ -20,7 +20,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
     return new NextResponse('Message not valid', { status: 500 });
   }
   const options = {
-    method: 'POST',
+    method: 'GET',
     headers: {accept: 'application/json'}
   };
 
