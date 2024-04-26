@@ -9,7 +9,7 @@ import { Firestore, collection, addDoc, updateDoc } from 'firebase/firestore/lit
 // })(db)
 
 const FRAMES_URL = process.env.FRAMES_URL || "https://tip-frame.vercel.app"
-const imageUrl = new URL("/og/tipPage", FRAMES_URL).href
+const imageUrl = new URL("/og/tip-page", FRAMES_URL).href
 const postUrl = new URL("/", FRAMES_URL).href
 async function getResponse(req: NextRequest): Promise<NextResponse> {
   const body: FrameRequest = await req.json();

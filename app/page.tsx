@@ -4,7 +4,7 @@ import { db } from './firebase-db/firebase-setup';
 import { Firestore, collection, addDoc, updateDoc } from 'firebase/firestore/lite';
 
 const FRAMES_URL = process.env.FRAMES_URL || "https://tip-frame.vercel.app"
-const imageUrl = new URL("/og/tipPage", FRAMES_URL).href
+const imageUrl = new URL("/og/tip-page", FRAMES_URL).href
 const tipCollection = collection(db, 'tip')
 
 const postUrl = new URL(`/api/tip-toshi-success?${tipCollection.id}`, FRAMES_URL).href
@@ -15,7 +15,7 @@ const frameMetadata = getFrameMetadata({
   ],
   image: {
     src: imageUrl, 
-    aspectRatio: '1:1'
+    
   },
   post_url: postUrl,
 
