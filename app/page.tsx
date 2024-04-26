@@ -15,7 +15,7 @@ const frameMetadata = getFrameMetadata({
   ],
   image: {
     src: imageUrl, 
-    aspectRatio: '1:1'
+    aspectRatio: '1.91:1'
   },
   post_url: postUrl,
 
