@@ -20,11 +20,11 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
     return new NextResponse('Message not valid', { status: 500 });
   }
   const options = {
-    method: 'GET',
+    method: 'POST',
     headers: {accept: 'application/json'}
   };
 
-  let data = await fetch("https://www.google.com", options)
+  let data = await fetch("https://tip-frame.vercel.app/api/call-db", options)
   
 
     return new NextResponse(`<!DOCTYPE html><html><head>
