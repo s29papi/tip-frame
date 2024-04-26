@@ -18,7 +18,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse | Response> {
     }
 
     const farcasterUserAddress = await getFarcasterUserAddress(24654, {
-      neynarApiKey: 'MY_NEYNAR_API_KEY', 
+      neynarApiKey: 'NEYNAR_ONCHAIN_KIT', 
     });
     let recAddr = farcasterUserAddress?.verifiedAddresses
     let data;
