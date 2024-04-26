@@ -3,7 +3,7 @@ import {useRouter, useSearchParams} from "next/navigation";
 import {useEffect} from "react";
 
 export default function RedirectPage() {
-    const searchParams = useSearchParams()
+    let searchParams = new URLSearchParams(document.location.search);
     const router = useRouter();
 
     const txhash = searchParams.get('txhash')
@@ -13,9 +13,7 @@ export default function RedirectPage() {
 
         // Perform the redirect
         window.location.href = baseUrl;
-    }, [router, txhash
-        
-    ]);
+    }, [router, txhash]);
 
     return (
         <div>
