@@ -11,7 +11,7 @@ const postUrl = new URL(`/api/tip-toshi-success?${tipCollection.id}`, FRAMES_URL
 
 const frameMetadata = getFrameMetadata({
   buttons: [
-      {label: 'TIP', action: 'tx', target: `${FRAMES_URL}/api/tip-toshi-tx`, postUrl: `${FRAMES_URL}/api/tip-toshi-success` },
+      {label: 'TIPPY', action: 'tx', target: `${FRAMES_URL}/api/tip-toshi-tx`, postUrl: `${FRAMES_URL}/api/tip-toshi-success` },
   ],
   image: {
     src: imageUrl, 

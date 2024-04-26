@@ -18,22 +18,14 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   if (!isValid) {
     return new NextResponse('Message not valid', { status: 500 });
   }
-  let val;
-
-  const tipCollection = collection(db, 'tip');
-  val = addDoc(tipCollection, { tipId: 0, tipped: true })
-    .then(response => {
-      val = response.id;
-      return response.id; // Return the id for further chaining if needed
-    })
-    .catch(err => console.error(err));
+  
     return new NextResponse(`<!DOCTYPE html><html><head>
             <title>Start My Match</title>
             <meta property="fc:frame" content="vNext" />        
             <meta property="fc:frame:image" content="${imageUrl}"/>
-            <meta property="fc:frame:button:1" content="TIP Statussssssssssssssssssssssssss" />
+            <meta property="fc:frame:button:1" content="TIP Statussssssssssssssssssssssssss sssddff" />
             <meta property="fc:frame:button:1:action" content="post"/>
-            <meta property="fc:frame:post_url" content="${postUrl}?${val}"/>
+            <meta property="fc:frame:post_url" content="${postUrl}"/>
         </head></html>`);
 }
 
