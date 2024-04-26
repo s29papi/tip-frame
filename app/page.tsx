@@ -18,7 +18,8 @@ export async function generateMetadata(
 
   if (searchParams) {
     let amount = searchParams["amount"];
-    imgUrl += '?' + `amount=${amount}`
+    let tip = searchParams["tip"];
+    imgUrl += '?' + `amount=${amount}` + "&&" + `tip=${tip}`
     txPostUrl += '?' + `amount=${amount}`
     buttons = [
       {label: 'TIP', action: 'tx', target: txPostUrl, postUrl: postUrl },
